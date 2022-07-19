@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+// 함수 선언부
+
+
+//전역 변수부
+
+
+//메인 코드부
+
+
+</script>
+</head>
+<body>
+    <canvas id="canvas" width=700 height=300 style="background-color: aliceblue;">
+
+
+    </canvas>
+    <script>
+        let canvas = document.getElementById("canvas"); // 도화지 접근
+        let ctx = canvas.getContext('2d'); // 물감, 붓이 들어있는 통
+
+        //사각형 그리기
+        ctx.beginPath();
+        ctx.strokeStyle = 'pink'; //물감 고르기
+        ctx.rect(50, 50, 100, 70);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(190, 50);
+        ctx.lineTo(250, 100);
+        ctx.lineTo(225, 30);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(260, 50);
+        ctx.lineTo(190, 50);
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = 'pink';
+        ctx.beginPath();
+        ctx.moveTo(350,30);
+        ctx.arc(350,50, 20, Math.PI*1.2, Math.PI*2.8);
+        ctx.lineTo(350,50);
+        ctx.lineTo(335, 35);
+        ctx.fill();
+        ctx.stroke();
+
+
+
+        ctx.closePath();
+    </script>
+</body>
+</html>

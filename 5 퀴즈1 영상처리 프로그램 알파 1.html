@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+// 함수 선언부
+
+//2차원 배열 생성하는 함수
+function makeArray(){
+    let arr = new Array(ROW);
+    for(i=0; i<arr.length; i++){
+        arr[i] = new Array(COL);
+    }
+    return arr;
+}
+
+// 배열을 출력하는 함수
+function display(img){
+    for(i=0; i<ROW; i++){
+        for(j=0; j<COL; j++){
+            if(img[i][j] < 100){
+                document.write("0");
+            }
+            if(img[i][j] < 10){
+                document.write("0");
+            }
+            document.write(img[i][j]+" ");
+        }
+        document.write("<br>");
+    }
+    document.write("<br>");
+}
+
+// grade 만큼 밝아지게 만드는 함수
+function lighter(grade, img){
+    let arr = makeArray();
+    for(i=0; i<ROW; i++){
+        for(j=0; j<COL; j++){
+            arr[i][j] = img[i][j] + grade;
+            // 오버플로우 처리
+            if(arr[i][j] > 255){
+                arr[i][j] = 255;
+            }
+        }
+    }
+    return arr;
+}
+
+// grade만큼 어두워지게 만드는 함수
+function darker(grade, img){
+    let arr = makeArray();
+    for(i=0; i<ROW; i++){
+        for(j=0; j<COL; j++){
+            arr[i][j] = img[i][j] - grade;
+            // 오버플로우 처리
+            if(arr[i][j] < 0){
+                arr[i][j] = 0;
+            }
+        }
+    }
+    return arr;
+}
+
+// 색상반전을 시켜주는 함수
+function inversion(img){
+    let arr = makeArray();
+    for(i=0; i<ROW; i++){
+        for(j=0; j<COL; j++){
+            arr[i][j] = 255 - img[i][j];
+        }
+    }
+    return arr;
+}
+
+// 흑백으로 만드는 함수
+function makeBlackAndWhite(img){
+    let arr = makeArray();
+    for(i=0; i<ROW; i++){
+        for(j=0; j<COL; j++){
+            if(img[i][j] >= 128){
+                arr[i][j] = 255;
+            }
+            else{
+                arr[i][j] = 0;
+            }
+        }
+    }
+    return arr;
+}
+
+
+//전역 변수부
+let arr;
+const ROW = 4, COL = 6;
+
+//메인 코드부
+// 2차원 배열 생성
+arr = makeArray();
+
+// 이미지 파일 >> 메모리(배열)
+for(i=0; i<ROW; i++){
+    for(j=0; j<COL; j++){
+        // 여기서 [i][j] 값 읽기
+        arr[i][j] = parseInt(Math.random()*256);
+    }
+}
+
+// 기본배열 출력
+display(arr);
+//50 밝아진 배열 출력
+display(lighter(50, arr));
+// 100 어두워진 배열 출력
+display(darker(100, arr));
+// 색 반전된 배열 출력
+display(inversion(arr));
+// 흑백으로 만든 배열 출력
+display(makeBlackAndWhite(arr));
+</script>
+</head>
+<body>
+    
+</body>
+</html>

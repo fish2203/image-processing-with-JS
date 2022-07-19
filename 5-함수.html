@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+// 함수 선언부
+function addValue(n1, n2){
+    return n1 + n2;
+}
+
+function minusValue(n1, n2){
+    return n1 - n2;
+}
+
+function gopValue(n1, n2){
+    return n1 * n2;
+}
+
+function nanugiValue(n1, n2){
+    return n1 / n2;
+}
+
+function sosuMake(){
+    for(i = 2; i<1001; i++){
+        for(j = i-1; j > 0; j--){
+            if(i % j == 0){
+                if(j != 1){
+                    break;
+                }
+                else{
+                    document.writeln(i + "<br>");
+                }
+            }
+        }
+    }
+}
+
+// 전역 변수부
+let num1 = 100;
+let num2 = 200;
+let result;
+
+// 메인 코드부
+result = num1 + num2;
+document.writeln(result + "<br>");
+document.writeln(addValue(num1, num2) + "<br>");
+document.writeln(minusValue(num1, num2) + "<br>");
+document.writeln(gopValue(num1, num2) + "<br>");
+document.writeln(nanugiValue(num1, num2) + "<br>");
+
+sosuMake();
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+//전역 변수부
+let inCanvas, inCtx, inPaper; // 입력영상관련 변수
+let inFile, inImg, inH, inW; //입력 파일, 입력 배열, 입력 폭, 높이
+
+// 함수 선언부
+function init(){
+    inCanvas = document.getElementById("inCanvas");
+    inCtx = inCanvas.getContext('2d');
+}
+
+function openRawImage(){
+    inFile = document.getElementById("inFile").files[0]; // 파일중에 첫번째
+    
+    // 중요! 이미지의 폭과 높이를 계산
+    inH = inW = 256;
+
+    // 이미지 크기의 2차원 메모리를 확보
+    inImg = new Array(inH);
+    for(i=0; i<inImg.length; i++){
+        inImg[i] = new Array(inW);
+    }
+
+    // 캔버스 크기 지정
+    inCanvas.height = inH;
+    inCanvas.width = inW;
+
+    // 이미지 파일 -> 메모리(배열) 로딩
+    
+    let reader = new FileReader();
+    reader.readAsBinaryString(inFile);
+    reader.onload = function() {
+        let blob = reader.result; // 파일을 한 덩어리(blob)으로 가져옴
+        // 덩어리(blob)에서 한점한점 뽑아서 2차원 배열에 넣기
+        for(i=0; i<inH; i++){
+            for(j=0; j<inW; j++){
+                let sPixel=(i * inH + j); // 시작위치
+                let ePixel = (i * inH + j) + 1; // 끝위치
+                inImg[i][j] = blob.slice(sPixel, ePixel);
+            }
+        }
+        // 입력 메모리를 종이에 콕콕콕 찍기
+        inPaper = inCtx.createImageData(inH, inW);
+        for(i=0; i<inH; i++){
+            for(j=0; j<inW; j++){
+                let px = inImg[i][j].charCodeAt(0); // 깨진 글자를 숫자로 변경
+                inPaper.data[(i * inH + j)*4 + 0] = px; // R 세개에 모두 동일 숫자
+                inPaper.data[(i * inH + j)*4 + 1] = px; // G 넣어줘서 흑백으로
+                inPaper.data[(i * inH + j)*4 + 2] = px; // B 표현함
+                inPaper.data[(i * inH + j)*4 + 3] = 255; // Alpha, 투명도
+            }
+        }
+        inCtx.putImageData(inPaper,0,0); // 종이를 캔버스 0,0 에 붙이기
+    }
+}
+
+//메인 코드부
+
+
+</script>
+</head>
+<body onload="init()">
+    <input type="file" id="inFile" onchange="openRawImage()" />
+    <canvas id="inCanvas" style="background-color: antiquewhite;">
+
+    </canvas>
+</body>
+</html>

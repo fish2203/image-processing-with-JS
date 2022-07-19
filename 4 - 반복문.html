@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+// 1부터 100까지 합계
+let result = 0;
+for(i = 0; i <= 100; i++){
+    result += i;
+}
+document.writeln("1부터 100까지의 합 = " + result + "<br>");
+
+// 1부터 999까지 더하기
+result = 0;
+for(i = 0; i <= 999; i++){
+    result += i;
+}
+document.writeln("1부터 999까지의 합 = " + result + "<br>");
+
+// 3부터 100까지 홀수 더하기
+result = 0;
+for(i = 3; i <= 100; i += 2){
+    result += i;
+}
+document.writeln("3부터 100까지 홀수의 합 = " + result + "<br>");
+
+// 1234부터 4567까지 378의 배수 더하기
+result = 0;
+for(i = 1234; i <= 4567; i ++){
+    if(i % 378 == 0){
+        result += i;
+    }
+}
+document.writeln("1234부터 4567까지 378의 배수의 합 = " + result + "<br>");
+</script>
+</head>
+<body>
+    
+</body>
+</html>

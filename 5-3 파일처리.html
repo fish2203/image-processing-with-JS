@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script lang="javascript">
+// 함수 선언부
+function openText(){
+    let txtFile = document.getElementById("selectFile").files[0]; // 파일중에 첫번째
+    let reader = new FileReader(); // 파일객체 선언
+    reader.onload = function() { // 익명함수
+        txtDiv.innerText = reader.result;
+    }
+    reader.readAsText(txtFile);
+}
+
+//전역 변수부
+
+
+//메인 코드부
+
+
+</script>
+</head>
+<body>
+    <input type="file" id="selectFile" onchange="openText()" />
+    <div id="txtDiv">
+
+
+    </div>
+</body>
+</html>
